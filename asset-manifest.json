@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ElifTech-task/static/css/main.2d709f4f.css",
+    "main.js": "/ElifTech-task/static/js/main.e627de9c.js",
+    "index.html": "/ElifTech-task/index.html",
+    "main.2d709f4f.css.map": "/ElifTech-task/static/css/main.2d709f4f.css.map",
+    "main.e627de9c.js.map": "/ElifTech-task/static/js/main.e627de9c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2d709f4f.css",
+    "static/js/main.e627de9c.js"
+  ]
+}
