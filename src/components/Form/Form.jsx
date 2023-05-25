@@ -1,14 +1,22 @@
-import { Formik, Field, Form } from 'formik';
+import { Formik } from 'formik';
 import React from 'react';
 import { ValidationSchema } from './Validation';
 import { useDispatch } from 'react-redux';
 import { submitOrder } from '../../redux/operations';
+import {
+  Wrap,
+  FormStyled,
+  Input,
+  InputWrap,
+  FieldContainer,
+  SubmitBtn,
+} from './Form.styled';
 
-export const OrderForm = ({ list }) => {
+export const OrderForm = ({ list, clearCart }) => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <Wrap>
       <Formik
         initialValues={{
           name: '',
@@ -18,33 +26,44 @@ export const OrderForm = ({ list }) => {
         }}
         onSubmit={(values, { resetForm }) => {
           const dataToSend = { ...values, items: list };
-          console.log('OrderForm   dataToSend:', dataToSend);
           dispatch(submitOrder(dataToSend));
           resetForm();
+          clearCart();
         }}
         validationSchema={ValidationSchema}
       >
         {({ handleSubmit, errors, touched }) => (
-          <Form onSubmit={handleSubmit}>
-            <Field type="text" name="name" placeholder="Name" />
-            {errors.name && touched.name && <div>{errors.name}</div>}
+          <FormStyled onSubmit={handleSubmit}>
+            <InputWrap>
+              <FieldContainer>
+                <Input type="text" name="name" placeholder="Name"></Input>
+                {errors.name && touched.name && <div>{errors.name}</div>}
+              </FieldContainer>
 
-            <Field type="tel" name="phone" placeholder="Phone number" />
-            {errors.phone && touched.phone && <div>{errors.phone}</div>}
+              <FieldContainer>
+                <Input type="tel" name="phone" placeholder="Phone number" />
+                {errors.phone && touched.phone && <div>{errors.phone}</div>}
+              </FieldContainer>
 
-            <Field type="email" name="email" placeholder="Email" />
-            {errors.email && touched.email && <div>{errors.email}</div>}
+              <FieldContainer>
+                <Input type="email" name="email" placeholder="Email" />
+                {errors.email && touched.email && <div>{errors.email}</div>}
+              </FieldContainer>
+              <FieldContainer>
+                <Input type="text" name="address" placeholder="Address" />
+                {errors.address && touched.address && (
+                  <div>{errors.address}</div>
+                )}
+              </FieldContainer>
+            </InputWrap>
 
-            <Field type="text" name="address" placeholder="Address" />
-            {errors.address && touched.address && <div>{errors.address}</div>}
-
-            <button type="submit" aria-label="Submit order">
+            <SubmitBtn type="submit" aria-label="Submit order">
               Submit
-            </button>
-          </Form>
+            </SubmitBtn>
+          </FormStyled>
         )}
       </Formik>
-    </div>
+    </Wrap>
   );
 };
 

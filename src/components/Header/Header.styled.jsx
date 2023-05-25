@@ -36,16 +36,17 @@ export const LogoLink = styled(NavLink)`
 `;
 
 export const LinkStyled = styled(NavLink)`
+  display: block;
+  height: 30px;
   text-decoration: none;
   font-family: inherit;
   font-weight: 600;
-  color: #843b62;
+  color: #092327;
   &:visited {
-    color: #843b62;
+    color: #092327;
   }
-  &:hover,
-  &:focus,
-  &:active {
-    color: #0b032d;
+
+  &.active {
+    border-bottom: 2px solid #0b5351;
   }
 `;

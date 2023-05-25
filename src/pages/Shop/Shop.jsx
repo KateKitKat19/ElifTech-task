@@ -41,7 +41,7 @@ export const Shop = ({ addToCartFnc, cart }) => {
   }, [currentShop, goods]);
 
   useEffect(() => {
-    setCurrentShop(shopsList !== null ? shopsList[0] : undefined);
+    setCurrentShop(shopsList !== null && shopsList[0]);
   }, [shopsList]);
 
   function checkTheGoods() {
@@ -53,12 +53,15 @@ export const Shop = ({ addToCartFnc, cart }) => {
       {isLoading && !error && <Loader />}
       {checkTheGoods() === true && (
         <>
-          <ShopsList list={shopsList} selectShop={setCurrentShop}></ShopsList>
+          <ShopsList
+            list={shopsList}
+            selectShop={setCurrentShop}
+            current={currentShop}
+          ></ShopsList>
           <GoodsList
             list={currentItems}
             addToCartFnc={addToCartFnc}
             cart={cart}
-            current={currentShop}
           ></GoodsList>
         </>
       )}

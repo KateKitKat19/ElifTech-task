@@ -1,17 +1,20 @@
 import * as Yup from 'yup';
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+const nameRegExp =
+  /(^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$)/;
+
 export const ValidationSchema = Yup.object().shape({
   name: Yup.string()
     .matches(
-      /(^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$)/,
+      nameRegExp,
       'Name may contain only letters, apostrophe, dash and spaces.'
     )
     .required('This field is required'),
   phone: Yup.string()
-    .matches(
-      /(\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9})/,
-      'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
-    )
+    .matches(phoneRegExp, 'Phone number must be valid')
     .required('This field is required'),
   email: Yup.string()
     .email('Email must be valid email')

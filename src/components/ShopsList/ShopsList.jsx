@@ -10,7 +10,7 @@ export const ShopsList = ({ list, selectShop, current }) => {
               <ListItem
                 key={nanoid()}
                 onClick={() => selectShop(shop)}
-                
+                isCurrent={current === shop}
               >
                 {shop}
               </ListItem>

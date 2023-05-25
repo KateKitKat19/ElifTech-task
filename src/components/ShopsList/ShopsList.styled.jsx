@@ -21,22 +21,24 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
+  width: 100%;
   display: flex;
   width: fit-content;
   padding: 22px;
-  background-color: white;
   border-radius: 4px;
   justify-content: center;
   align-items: center;
   font-family: inherit;
+  font-size: 30px;
   transition: box-shadow 250ms ease;
   color: #210124;
   font-weight: 700;
   cursor: pointer;
-  &:hover,
-  &:focus {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  }
-`;
 
+  ${({ isCurrent }) =>
+    isCurrent &&
+    `
+    background-color: #7EA2AA;
+    color: white;
+  `}
+`;

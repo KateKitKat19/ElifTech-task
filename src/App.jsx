@@ -42,6 +42,9 @@ export const App = () => {
     localStorage.setItem('cartList', JSON.stringify(updatedList));
   }
 
+  function clearCart() {
+    setCart([]);
+  }
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
@@ -57,6 +60,7 @@ export const App = () => {
               addToCartFnc={addToCart}
               addMore={addMore}
               addLess={addLess}
+              clearCart={clearCart}
             />
           }
         ></Route>
