@@ -1,8 +1,15 @@
 import { List, ListItem } from './CartList.styled';
 
-export const CartList = ({ list, addToCartFnc }) => {
-  const isInCart = dish => list.find(item => dish._id === item._id);
+export const CartList = ({ list, addToCartFnc, addMore, addLess }) => {
+  function countTotalPrice() {
+    let sum = 0;
+    list.map(dish => {
+      return (sum = sum + dish.price * dish.quantity);
+    });
+    return sum;
+  }
 
+  console.log('total price: ', countTotalPrice());
   return (
     <div>
       <List>
@@ -12,24 +19,42 @@ export const CartList = ({ list, addToCartFnc }) => {
               <ListItem key={dish._id}>
                 <p>{dish.title}</p>
                 <p>{dish.shop}</p>
-                <img
-                  src={dish.image}
-                  alt={dish.title}
-                  width="50"
-                  height="50"
-                ></img>
+                <img src={dish.image} alt={dish.title} width="50" height="50" />
                 <p>{dish.price}</p>
                 <button
                   type="button"
-                  aria-label="add to cart"
+                  aria-label="remove cart"
                   onClick={() => addToCartFnc(dish)}
                 >
-                  {isInCart(dish) ? 'Remove from cart' : 'Add to cart'}
+                  Remove from cart
                 </button>
+                <button
+                  type="button"
+                  aria-label="less"
+                  onClick={() => addLess(dish._id)}
+                  disabled={dish.quantity === 1}
+                >
+                  {' '}
+                  -{' '}
+                </button>
+                {dish.quantity}
+                <button
+                  type="button"
+                  aria-label="more"
+                  onClick={() => addMore(dish._id)}
+                >
+                  {' '}
+                  +{' '}
+                </button>
+                <div>
+                  <h3>Total price :</h3>
+                  <span>{dish.quantity * dish.price}</span>
+                </div>
               </ListItem>
             );
           })}
       </List>
+      <h3>Total : {countTotalPrice()}</h3>
     </div>
   );
 };
