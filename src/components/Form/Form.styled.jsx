@@ -18,7 +18,7 @@ export const FormStyled = styled(Form)`
 
 export const Input = styled(Field)`
   display: inline-block;
-  flex-basis: calc((100% - 10px) / 2);
+  width: 200px;
   height: 40px;
   max-height: 40px;
   border: none;
@@ -29,6 +29,9 @@ export const Input = styled(Field)`
     border: 2px solid #223127;
     outline: transparent;
   }
+  @media screen and (min-width: 768px) {
+    width: 350px;
+  }
 `;
 
 export const InputWrap = styled.div`
@@ -36,10 +39,11 @@ export const InputWrap = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const FieldContainer = styled.div`
-  max-width: 200px;
   display: flex;
   flex-direction: column;
   gap: 10px;

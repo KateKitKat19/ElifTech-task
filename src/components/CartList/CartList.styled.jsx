@@ -9,16 +9,21 @@ export const List = styled.ul`
   width: 100%;
   list-style: none;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 15px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const ListItem = styled.li`
-  width: 100%;
+  width: 280px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  
   justify-content: space-evenly;
   align-items: baseline;
   gap: 15px;
@@ -36,6 +41,9 @@ export const ListItem = styled.li`
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   }
+  @media screen and (min-width: 768px) {
+    width: 350px;
+  }
 `;
 
 export const WrapForContent = styled.div`
@@ -45,11 +53,14 @@ export const WrapForContent = styled.div`
 `;
 
 export const Title = styled.p`
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 600;
   color: #210124;
   text-align: center;
   margin-right: auto;
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 export const Restaurant = styled.p`
@@ -58,6 +69,7 @@ export const Restaurant = styled.p`
   color: #210124;
   text-align: center;
 `;
+
 export const Thumb = styled.div`
   width: 150px;
   height: 150px;
@@ -71,6 +83,11 @@ export const Image = styled.img`
   height: 100%;
 `;
 
+export const BtnsContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
 export const Price = styled.p`
   font-size: 18px;
   font-family: 'Libre Baskerville';

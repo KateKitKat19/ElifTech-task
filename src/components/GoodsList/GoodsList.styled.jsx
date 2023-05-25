@@ -6,12 +6,13 @@ export const List = styled.ul`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 35px;
+  justify-content: center;
 `;
 
 export const ListItem = styled.li`
   display: flex;
   flex-direction: column;
-  flex-basis: calc((100% - 35px) / 2);
+  width: 300px;
   gap: 15px;
   padding: 10px;
   border-radius: 4px;
@@ -26,6 +27,9 @@ export const ListItem = styled.li`
   &:focus {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  }
+  @media screen and(min-width: 768px) {
+    width: 450px;
   }
 `;
 
@@ -79,5 +83,8 @@ export const Button = styled.button`
   &:focus {
     color: white;
     background-color: #092327;
+  }
+  &:disabled {
+    pointer-events: none;
   }
 `;

@@ -11,6 +11,12 @@ import {
 
 export const GoodsList = ({ list, addToCartFnc, cart }) => {
   const isInCart = dish => cart.find(item => dish._id === item._id);
+  function checkIfPossibleToOrder(dish) {
+    if (cart && cart.length > 0) {
+      const existingOrder = cart[0].shop;
+      return dish.shop === existingOrder ? false : true;
+    }
+  }
   return (
     <div>
       <List>
@@ -30,6 +36,7 @@ export const GoodsList = ({ list, addToCartFnc, cart }) => {
                   type="button"
                   aria-label="add to cart"
                   onClick={() => addToCartFnc(dish)}
+                  disabled={checkIfPossibleToOrder(dish)}
                 >
                   {isInCart(dish) !== undefined
                     ? 'Remove from cart'

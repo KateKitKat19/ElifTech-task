@@ -12,6 +12,7 @@ import {
   WrapForPrice,
   SumTitle,
   TotalForOrder,
+  BtnsContainer
 } from './CartList.styled';
 import { BiMinus, BiPlus } from 'react-icons/bi';
 
@@ -47,22 +48,24 @@ export const CartList = ({ list, addToCartFnc, addMore, addLess }) => {
                 >
                   Remove from cart
                 </Button>
-                <Button
-                  type="button"
-                  aria-label="less"
-                  onClick={() => addLess(dish._id)}
-                  disabled={dish.quantity === 1}
-                >
-                  <BiMinus />
-                </Button>
-                {dish.quantity}
-                <Button
-                  type="button"
-                  aria-label="more"
-                  onClick={() => addMore(dish._id)}
-                >
-                  <BiPlus />
-                </Button>
+                <BtnsContainer>
+                  <Button
+                    type="button"
+                    aria-label="less"
+                    onClick={() => addLess(dish._id)}
+                    disabled={dish.quantity === 1}
+                  >
+                    <BiMinus />
+                  </Button>
+                  {dish.quantity}
+                  <Button
+                    type="button"
+                    aria-label="more"
+                    onClick={() => addMore(dish._id)}
+                  >
+                    <BiPlus />
+                  </Button>
+                </BtnsContainer>
                 <WrapForPrice>
                   <SumTitle>Total price :</SumTitle>
                   <Price>{dish.quantity * dish.price} UAH</Price>

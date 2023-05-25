@@ -4,7 +4,7 @@ import { Header } from 'components/Header/Header';
 import { Container } from 'components/Container/Container.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const SharedLayout = ({ isSlideshowActive, setSlideshowState }) => {
+export const SharedLayout = () => {
   return (
     <Container>
       <Header></Header>
