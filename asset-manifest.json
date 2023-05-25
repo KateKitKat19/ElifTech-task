@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/ElifTech-task/static/css/main.fdd155aa.css",
-    "main.js": "/ElifTech-task/static/js/main.9f43f1d3.js",
+    "main.css": "/ElifTech-task/static/css/main.e3ca65ba.css",
+    "main.js": "/ElifTech-task/static/js/main.bec9b382.js",
     "static/media/Logo.png": "/ElifTech-task/static/media/Logo.871bdd8bc9e1df166356.png",
     "index.html": "/ElifTech-task/index.html",
-    "main.fdd155aa.css.map": "/ElifTech-task/static/css/main.fdd155aa.css.map",
-    "main.9f43f1d3.js.map": "/ElifTech-task/static/js/main.9f43f1d3.js.map"
+    "main.e3ca65ba.css.map": "/ElifTech-task/static/css/main.e3ca65ba.css.map",
+    "main.bec9b382.js.map": "/ElifTech-task/static/js/main.bec9b382.js.map"
   },
   "entrypoints": [
-    "static/css/main.fdd155aa.css",
-    "static/js/main.9f43f1d3.js"
+    "static/css/main.e3ca65ba.css",
+    "static/js/main.bec9b382.js"
   ]
 }
