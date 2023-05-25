@@ -9,7 +9,7 @@ export const CartList = ({ list, addToCartFnc, addMore, addLess }) => {
     return sum;
   }
 
-  console.log('total price: ', countTotalPrice());
+
   return (
     <div>
       <List>

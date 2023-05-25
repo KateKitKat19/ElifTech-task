@@ -12,6 +12,7 @@ export const Loader = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
+        width: '100vw',
       }}
       wrapperClass=""
       visible={true}

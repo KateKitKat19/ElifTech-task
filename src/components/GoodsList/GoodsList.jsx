@@ -1,4 +1,13 @@
-import { List, ListItem } from './GoodsList.styled';
+import {
+  List,
+  ListItem,
+  WrapForContent,
+  Title,
+  Image,
+  Thumb,
+  Price,
+  Button,
+} from './GoodsList.styled';
 
 export const GoodsList = ({ list, addToCartFnc, cart }) => {
   const isInCart = dish => cart.find(item => dish._id === item._id);
@@ -9,16 +18,15 @@ export const GoodsList = ({ list, addToCartFnc, cart }) => {
           list.map(dish => {
             return (
               <ListItem key={dish._id}>
-                <p>{dish.title}</p>
-                <p>{dish.shop}</p>
-                <img
-                  src={dish.image}
-                  alt={dish.title}
-                  width="50"
-                  height="50"
-                ></img>
-                <p>{dish.price}</p>
-                <button
+                <WrapForContent>
+                  <Title>{dish.title}</Title>
+                </WrapForContent>
+                <Thumb>
+                  <Image src={dish.image} alt={dish.title}></Image>
+                </Thumb>
+
+                <Price>{dish.price} UAH</Price>
+                <Button
                   type="button"
                   aria-label="add to cart"
                   onClick={() => addToCartFnc(dish)}
@@ -26,7 +34,7 @@ export const GoodsList = ({ list, addToCartFnc, cart }) => {
                   {isInCart(dish) !== undefined
                     ? 'Remove from cart'
                     : 'Add to cart'}
-                </button>
+                </Button>
               </ListItem>
             );
           })}

@@ -1,13 +1,17 @@
 import { nanoid } from 'nanoid';
 import { Wrap, List, ListItem } from './ShopsList.styled';
-export const ShopsList = ({ list, selectShop }) => {
+export const ShopsList = ({ list, selectShop, current }) => {
   return (
     <Wrap>
       <List>
         {list !== null &&
           list.map(shop => {
             return (
-              <ListItem key={nanoid()} onClick={() => selectShop(shop)}>
+              <ListItem
+                key={nanoid()}
+                onClick={() => selectShop(shop)}
+                
+              >
                 {shop}
               </ListItem>
             );

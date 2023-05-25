@@ -1,11 +1,13 @@
-import { selectGoods } from 'redux/selectors';
+import { selectGoods, selectError, selectIsLoading } from 'redux/selectors';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllGoods } from 'redux/operations';
 import { useState } from 'react';
-// import { Loader } from 'components/Loader/Loader';
+import { Loader } from 'components/Loader/Loader';
 import { ShopsList } from 'components/ShopsList/ShopsList';
 import { GoodsList } from 'components/GoodsList/GoodsList';
+import { Wrap } from './Shop.styled';
+
 import _ from 'lodash';
 
 export const Shop = ({ addToCartFnc, cart }) => {
@@ -14,8 +16,8 @@ export const Shop = ({ addToCartFnc, cart }) => {
   const [shopsList, setShopsList] = useState(null);
   const [currentShop, setCurrentShop] = useState(null);
   const [currentItems, setCurrentItems] = useState(null);
-  // const error = useSelector(selectError);
-  // const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetchAllGoods());
@@ -47,8 +49,8 @@ export const Shop = ({ addToCartFnc, cart }) => {
   }
 
   return (
-    <>
-      <h2>Shop page</h2>
+    <Wrap>
+      {isLoading && !error && <Loader />}
       {checkTheGoods() === true && (
         <>
           <ShopsList list={shopsList} selectShop={setCurrentShop}></ShopsList>
@@ -56,9 +58,10 @@ export const Shop = ({ addToCartFnc, cart }) => {
             list={currentItems}
             addToCartFnc={addToCartFnc}
             cart={cart}
+            current={currentShop}
           ></GoodsList>
         </>
       )}
-    </>
+    </Wrap>
   );
 };
