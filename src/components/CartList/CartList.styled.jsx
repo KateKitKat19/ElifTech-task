@@ -124,6 +124,7 @@ export const WrapForPrice = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 20px;
 `;
 
 export const SumTitle = styled.p`

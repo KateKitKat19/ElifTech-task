@@ -1,5 +1,7 @@
 import { Formik } from 'formik';
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import { ValidationSchema } from './Validation';
 import { useDispatch } from 'react-redux';
 import { submitOrder } from '../../redux/operations';
@@ -11,12 +13,20 @@ import {
   FieldContainer,
   SubmitBtn,
 } from './Form.styled';
+import { selectError, selectIsLoading } from 'redux/selectors';
+import { ErrorPage } from 'pages/ErrorPage/ErrorPage';
+import { Loader } from 'components/Loader/Loader';
 
 export const OrderForm = ({ list, clearCart }) => {
   const dispatch = useDispatch();
 
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
+
   return (
     <Wrap>
+      {error && <ErrorPage></ErrorPage>}
+      {isLoading && !error && <Loader />}
       <Formik
         initialValues={{
           name: '',

@@ -1,7 +1,7 @@
 import { selectError, selectIsLoading } from 'redux/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useSelector } from 'react-redux';
-
+import { ErrorPage } from 'pages/ErrorPage/ErrorPage';
 import { CartList } from 'components/CartList/CartList';
 import { OrderForm } from 'components/Form/Form';
 import { EmptyWrap } from './Cart.styled';
@@ -21,6 +21,7 @@ export const Cart = ({
   }
   return (
     <>
+     {error && <ErrorPage></ErrorPage>}
       {checkCart() && (
         <>
           <CartList

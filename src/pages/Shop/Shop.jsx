@@ -9,6 +9,7 @@ import { GoodsList } from 'components/GoodsList/GoodsList';
 import { Wrap } from './Shop.styled';
 
 import _ from 'lodash';
+import { ErrorPage } from 'pages/ErrorPage/ErrorPage';
 
 export const Shop = ({
   addToCartFnc,
@@ -54,23 +55,26 @@ export const Shop = ({
   }
 
   return (
-    <Wrap>
+    <>
+      {error && <ErrorPage></ErrorPage>}
       {isLoading && !error && <Loader />}
-      {checkTheGoods() === true && (
-        <>
-          <ShopsList
-            list={shopsList}
-            selectShop={setCurrentShop}
-            current={currentShop}
-          ></ShopsList>
-          <GoodsList
-            list={currentItems}
-            addToCartFnc={addToCartFnc}
-            cart={cart}
-            checkIfPossibleToOrder={checkIfPossibleToOrder}
-          ></GoodsList>
-        </>
-      )}
-    </Wrap>
+      <Wrap>
+        {checkTheGoods() === true && (
+          <>
+            <ShopsList
+              list={shopsList}
+              selectShop={setCurrentShop}
+              current={currentShop}
+            ></ShopsList>
+            <GoodsList
+              list={currentItems}
+              addToCartFnc={addToCartFnc}
+              cart={cart}
+              checkIfPossibleToOrder={checkIfPossibleToOrder}
+            ></GoodsList>
+          </>
+        )}
+      </Wrap>
+    </>
   );
 };

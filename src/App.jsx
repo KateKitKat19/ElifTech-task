@@ -4,6 +4,7 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { Cart } from 'pages/Cart/Cart';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { ErrorPage } from 'pages/ErrorPage/ErrorPage';
 
 export const App = () => {
   const [cart, setCart] = useState([]);
@@ -98,7 +99,7 @@ export const App = () => {
             />
           }
         ></Route>
-        <Route path="*" element={<Shop />}></Route>
+        <Route path="*" element={<ErrorPage />}></Route>
       </Route>
     </Routes>
   );
