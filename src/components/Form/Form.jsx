@@ -24,59 +24,61 @@ export const OrderForm = ({ list, clearCart }) => {
   const isLoading = useSelector(selectIsLoading);
 
   return (
-    <Wrap>
-      {error && <ErrorPage></ErrorPage>}
+    <>
+      {error && !isLoading && <ErrorPage></ErrorPage>}
       {isLoading && !error && <Loader />}
-      <Formik
-        initialValues={{
-          name: '',
-          phone: '',
-          email: '',
-          address: '',
-        }}
-        onSubmit={(values, { resetForm }) => {
-          const dataToSend = { ...values, items: list };
-          dispatch(submitOrder(dataToSend)).then(
-            setTimeout(() => {
-              resetForm();
-              clearCart();
-            }, 1000)
-          );
-        }}
-        validationSchema={ValidationSchema}
-      >
-        {({ handleSubmit, errors, touched }) => (
-          <FormStyled onSubmit={handleSubmit}>
-            <InputWrap>
-              <FieldContainer>
-                <Input type="text" name="name" placeholder="Name"></Input>
-                {errors.name && touched.name && <div>{errors.name}</div>}
-              </FieldContainer>
+      <Wrap>
+        <Formik
+          initialValues={{
+            name: '',
+            phone: '',
+            email: '',
+            address: '',
+          }}
+          onSubmit={(values, { resetForm }) => {
+            const dataToSend = { ...values, items: list };
+            dispatch(submitOrder(dataToSend)).then(
+              setTimeout(() => {
+                resetForm();
+                clearCart();
+              }, 1000)
+            );
+          }}
+          validationSchema={ValidationSchema}
+        >
+          {({ handleSubmit, errors, touched }) => (
+            <FormStyled onSubmit={handleSubmit}>
+              <InputWrap>
+                <FieldContainer>
+                  <Input type="text" name="name" placeholder="Name"></Input>
+                  {errors.name && touched.name && <div>{errors.name}</div>}
+                </FieldContainer>
 
-              <FieldContainer>
-                <Input type="tel" name="phone" placeholder="Phone number" />
-                {errors.phone && touched.phone && <div>{errors.phone}</div>}
-              </FieldContainer>
+                <FieldContainer>
+                  <Input type="tel" name="phone" placeholder="Phone number" />
+                  {errors.phone && touched.phone && <div>{errors.phone}</div>}
+                </FieldContainer>
 
-              <FieldContainer>
-                <Input type="email" name="email" placeholder="Email" />
-                {errors.email && touched.email && <div>{errors.email}</div>}
-              </FieldContainer>
-              <FieldContainer>
-                <Input type="text" name="address" placeholder="Address" />
-                {errors.address && touched.address && (
-                  <div>{errors.address}</div>
-                )}
-              </FieldContainer>
-            </InputWrap>
+                <FieldContainer>
+                  <Input type="email" name="email" placeholder="Email" />
+                  {errors.email && touched.email && <div>{errors.email}</div>}
+                </FieldContainer>
+                <FieldContainer>
+                  <Input type="text" name="address" placeholder="Address" />
+                  {errors.address && touched.address && (
+                    <div>{errors.address}</div>
+                  )}
+                </FieldContainer>
+              </InputWrap>
 
-            <SubmitBtn type="submit" aria-label="Submit order">
-              Submit
-            </SubmitBtn>
-          </FormStyled>
-        )}
-      </Formik>
-    </Wrap>
+              <SubmitBtn type="submit" aria-label="Submit order">
+                Submit
+              </SubmitBtn>
+            </FormStyled>
+          )}
+        </Formik>
+      </Wrap>
+    </>
   );
 };
 

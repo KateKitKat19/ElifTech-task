@@ -21,7 +21,7 @@ export const Cart = ({
   }
   return (
     <>
-     {error && <ErrorPage></ErrorPage>}
+      {error && <ErrorPage></ErrorPage>}
       {checkCart() && (
         <>
           <CartList
@@ -33,7 +33,7 @@ export const Cart = ({
           <OrderForm list={cartList} clearCart={clearCart}></OrderForm>
         </>
       )}
-      {cartList && cartList.length === 0 && (
+      {cartList && cartList.length === 0 && !isLoading && !error && (
         <EmptyWrap>There is nothing in your cart yet!</EmptyWrap>
       )}
       {isLoading && !error && <Loader />}
