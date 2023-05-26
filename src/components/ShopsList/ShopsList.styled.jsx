@@ -37,6 +37,7 @@ export const ListItem = styled.li`
   color: #210124;
   font-weight: 700;
   cursor: pointer;
+  
 
   ${({ isCurrent }) =>
     isCurrent &&

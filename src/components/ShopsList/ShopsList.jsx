@@ -1,6 +1,13 @@
 import { nanoid } from 'nanoid';
 import { Wrap, List, ListItem } from './ShopsList.styled';
-export const ShopsList = ({ list, selectShop, current }) => {
+
+
+
+export const ShopsList = ({
+  list,
+  selectShop,
+  current,
+}) => {
   return (
     <Wrap>
       <List>

@@ -25,11 +25,17 @@ export const ListItem = styled.li`
   cursor: pointer;
   &:hover,
   &:focus {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+      rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+      rgba(0, 0, 0, 0.07) 0px 16px 16px;
   }
   @media screen and(min-width: 768px) {
     width: 450px;
+  }
+  &.disabled {
+    pointer-events: none;
+    cursor: initial;
+    filter: opacity(0.7);
   }
 `;
 

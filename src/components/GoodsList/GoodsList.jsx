@@ -9,21 +9,24 @@ import {
   Button,
 } from './GoodsList.styled';
 
-export const GoodsList = ({ list, addToCartFnc, cart }) => {
+export const GoodsList = ({
+  list,
+  addToCartFnc,
+  cart,
+  checkIfPossibleToOrder,
+}) => {
+  
   const isInCart = dish => cart.find(item => dish._id === item._id);
-  function checkIfPossibleToOrder(dish) {
-    if (cart && cart.length > 0) {
-      const existingOrder = cart[0].shop;
-      return dish.shop === existingOrder ? false : true;
-    }
-  }
   return (
     <div>
       <List>
         {list !== null &&
           list.map(dish => {
             return (
-              <ListItem key={dish._id}>
+              <ListItem
+                key={dish._id}
+                className={checkIfPossibleToOrder() ? undefined : 'disabled'}
+              >
                 <WrapForContent>
                   <Title>{dish.title}</Title>
                 </WrapForContent>
@@ -36,7 +39,6 @@ export const GoodsList = ({ list, addToCartFnc, cart }) => {
                   type="button"
                   aria-label="add to cart"
                   onClick={() => addToCartFnc(dish)}
-                  disabled={checkIfPossibleToOrder(dish)}
                 >
                   {isInCart(dish) !== undefined
                     ? 'Remove from cart'

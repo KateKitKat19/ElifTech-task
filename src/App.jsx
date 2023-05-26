@@ -4,11 +4,27 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { Cart } from 'pages/Cart/Cart';
 import { useState } from 'react';
 import { useEffect } from 'react';
+
 export const App = () => {
   const [cart, setCart] = useState([]);
+  const [currentShop, setCurrentShop] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem('cartList', JSON.stringify(cart));
+    const items = localStorage.getItem('cartList');
+    try {
+      const parsedItems = JSON.parse(items);
+      if (items && items.length > 0) {
+        setCart(parsedItems);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cart && cart.length > 0) {
+      localStorage.setItem('cartList', JSON.stringify(cart));
+    }
   }, [cart]);
 
   function addToCart(dish) {
@@ -45,12 +61,30 @@ export const App = () => {
   function clearCart() {
     setCart([]);
   }
+
+  function checkIfPossibleToOrder() {
+    if (cart && cart.length > 0) {
+      const existingOrderShop = cart[0].shop;
+      const res = currentShop === existingOrderShop ? true : false;
+
+      return res;
+    } else return true;
+  }
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route
           index
-          element={<Shop addToCartFnc={addToCart} cart={cart} />}
+          element={
+            <Shop
+              addToCartFnc={addToCart}
+              cart={cart}
+              currentShop={currentShop}
+              setCurrentShop={setCurrentShop}
+              checkIfPossibleToOrder={checkIfPossibleToOrder}
+            />
+          }
         ></Route>
         <Route
           path="cart"

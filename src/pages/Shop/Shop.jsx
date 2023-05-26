@@ -10,11 +10,16 @@ import { Wrap } from './Shop.styled';
 
 import _ from 'lodash';
 
-export const Shop = ({ addToCartFnc, cart }) => {
+export const Shop = ({
+  addToCartFnc,
+  cart,
+  currentShop,
+  setCurrentShop,
+  checkIfPossibleToOrder,
+}) => {
   const dispatch = useDispatch();
   const goods = useSelector(selectGoods);
   const [shopsList, setShopsList] = useState(null);
-  const [currentShop, setCurrentShop] = useState(null);
   const [currentItems, setCurrentItems] = useState(null);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
@@ -37,15 +42,15 @@ export const Shop = ({ addToCartFnc, cart }) => {
       return;
     }
     const sortedGoodsFromList = goods.filter(item => item.shop === currentShop);
-    setCurrentItems(sortedGoodsFromList);
+    setCurrentItems && setCurrentItems(sortedGoodsFromList);
   }, [currentShop, goods]);
 
   useEffect(() => {
-    setCurrentShop(shopsList !== null && shopsList[0]);
-  }, [shopsList]);
+    setCurrentShop && setCurrentShop(shopsList !== null && shopsList[0]);
+  }, [shopsList, setCurrentShop]);
 
   function checkTheGoods() {
-    return goods !== null && goods !== undefined ? true : false;
+    return goods !== null && goods !== undefined;
   }
 
   return (
@@ -62,6 +67,7 @@ export const Shop = ({ addToCartFnc, cart }) => {
             list={currentItems}
             addToCartFnc={addToCartFnc}
             cart={cart}
+            checkIfPossibleToOrder={checkIfPossibleToOrder}
           ></GoodsList>
         </>
       )}

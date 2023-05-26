@@ -26,9 +26,12 @@ export const OrderForm = ({ list, clearCart }) => {
         }}
         onSubmit={(values, { resetForm }) => {
           const dataToSend = { ...values, items: list };
-          dispatch(submitOrder(dataToSend));
-          resetForm();
-          clearCart();
+          dispatch(submitOrder(dataToSend)).then(
+            setTimeout(() => {
+              resetForm();
+              clearCart();
+            }, 1000)
+          );
         }}
         validationSchema={ValidationSchema}
       >

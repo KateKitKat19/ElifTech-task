@@ -12,7 +12,7 @@ import {
   WrapForPrice,
   SumTitle,
   TotalForOrder,
-  BtnsContainer
+  BtnsContainer,
 } from './CartList.styled';
 import { BiMinus, BiPlus } from 'react-icons/bi';
 
@@ -29,6 +29,7 @@ export const CartList = ({ list, addToCartFnc, addMore, addLess }) => {
     <Wrap>
       <List>
         {list !== null &&
+          list.length > 0 &&
           list.map(dish => {
             return (
               <ListItem key={dish._id}>
